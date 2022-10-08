@@ -1,0 +1,90 @@
+body{
+    background-color: rgb(34,34,34);
+    margin: 0px;
+}
+
+.logo{
+    height: 70px;
+    width:  70px;
+    float: left;
+    display: block;
+    padding: 14px 16px;
+    color: rgb(157, 158, 158);
+    margin-left: 20px;
+}
+
+#navItems{
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#navItem{
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: rgb(157, 158, 158);
+    font-size: 20px;
+    margin-left: 30px;
+    margin-top: 25px;
+    margin-right: 40px;
+    margin-bottom: 25px;
+}
+
+#navItem:hover {
+    background-color: rgb(157, 158, 158);
+    color: #333;
+    border-radius: 5px;
+}
+
+
+
+#nftDiv {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    height: 20%;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#nftDiv img{
+    height: 250px;
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#nftDiv p{
+    color: white;
+}
+
+#nftDivAlt{
+    background-color: #333;
+}
+
+#deneme{
+    display: inline-block;
+    text-align-last: left;
+    position: relative;
+    top: -30px;
+    left: 20px
+}
+
+#deneme input{
+    width: 100px;
+}
+
+#deneme button{
+    margin-top: 60px;
+    width: 100px;
+    display: block;
+}
+
+#deneme button:hover{
+    background-color: rgba(112, 255, 112, 0.589);
+}
