@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
+
 import "@openzeppelin/contracts@4.6.0/token/ERC721/ERC721.sol";
 
 
@@ -10,18 +11,22 @@ contract NFTMarketplace{
     uint public idForAuction;
 
     error notEnoughError(uint, string);
-    mapping(uint => ItemforAuction) public idToItemForAuction;
+    mapping(uint => ItemforAuction) public idToItemForAuction; /*this mapping holds the ItemforAuction object*/
 
 
     event NFTAuctionStart(uint _startingPrice, uint indexed _tokenId, uint _deadLine);
     event NFTAuctionCancel(uint indexed _itemForAuctionId);
-    event bidPrice(uint _id, uint _price); 
+    event bidPrice(uint _itemForAuctionId, uint _price); 
     event FinisNFtAuction(uint indexed _itemForAuctionId);
 
+
+    /*constructor sets the owner of contrat
+    !be careful the contract owner cannot be changed afterwards.*/
     constructor() {
         owner = msg.sender;
     }
 
+    /*this struct holds the information of NFT*/
     struct ItemforAuction{
         address contractAddress;
         address sellerAddress;
@@ -33,7 +38,8 @@ contract NFTMarketplace{
         bool state;
     }
 
-
+    /*this function starts the Auction. 
+    and transfers NFT to the contract*/
     function startNFTAuction(address _nftContractAddress, uint _startingPrice, uint _tokenId, uint _deadline) public {
 
         ERC721 NFT = ERC721(_nftContractAddress);
@@ -46,6 +52,8 @@ contract NFTMarketplace{
 
     }
 
+
+    /*this function cancels the auction but the NFT shoundn't have any offer*/
     function cancelNFTAuction(uint _id) idCheck(_id) public{
 
         ItemforAuction memory info = idToItemForAuction[_id];
@@ -59,6 +67,7 @@ contract NFTMarketplace{
     }
 
 
+    /*this function gets offer if the offer is more than the highest price*/
     function bidPriceToNFT(uint _id) idCheck(_id) public payable {
         ItemforAuction storage info = idToItemForAuction[_id];
 
@@ -83,6 +92,8 @@ contract NFTMarketplace{
 
     }
 
+
+    /*this function ends the auction but the deadline must have passed */
     function finishNFTAuction(uint _id) idCheck(_id) public {
 
         ItemforAuction storage info = idToItemForAuction[_id];
